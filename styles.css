@@ -1,0 +1,736 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Inter", "Segoe UI", Arial, sans-serif;
+}
+
+
+body {
+
+    min-height: 100vh;
+
+    background:
+    linear-gradient(
+        135deg,
+        #F5F3FF,
+        #EDE9FE
+    );
+
+    color: #1F2937;
+
+}
+
+
+
+/* ================= HEADER ================= */
+
+
+header {
+
+    background:
+    linear-gradient(
+        135deg,
+        #7C3AED,
+        #4C1D95
+    );
+
+    color:white;
+
+    padding:50px 20px;
+
+    text-align:center;
+
+    border-radius:0 0 40px 40px;
+
+    box-shadow:
+    0 20px 40px rgba(124,58,237,.25);
+
+}
+
+
+
+.logo {
+
+    width:90px;
+
+    height:90px;
+
+    margin:auto;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+
+    background:white;
+
+    color:#7C3AED;
+
+
+    font-size:42px;
+
+    font-weight:800;
+
+
+    border-radius:30px;
+
+
+    box-shadow:
+    0 10px 30px rgba(0,0,0,.15);
+
+
+}
+
+
+
+header h1 {
+
+    margin-top:20px;
+
+    font-size:36px;
+
+    letter-spacing:-1px;
+
+}
+
+
+
+header p {
+
+    margin-top:10px;
+
+    opacity:.85;
+
+    font-size:17px;
+
+}
+
+
+
+
+
+/* ================= CONTAINER ================= */
+
+
+main {
+
+    width:90%;
+
+    max-width:950px;
+
+    margin:40px auto;
+
+}
+
+
+
+
+
+/* ================= CARDS ================= */
+
+
+section {
+
+    background:white;
+
+
+    padding:30px;
+
+
+    margin-bottom:25px;
+
+
+    border-radius:28px;
+
+
+    border:
+
+    1px solid #E9D5FF;
+
+
+    box-shadow:
+
+
+    0 15px 35px rgba(0,0,0,.08);
+
+
+    transition:.3s;
+
+
+}
+
+
+
+section:hover {
+
+
+    transform:translateY(-3px);
+
+
+}
+
+
+
+
+
+h2 {
+
+
+    color:#6D28D9;
+
+
+    margin-bottom:20px;
+
+
+    font-size:22px;
+
+
+}
+
+
+
+
+
+/* ================= INPUTS ================= */
+
+
+input,
+select {
+
+
+    width:100%;
+
+
+    padding:15px;
+
+
+    margin-top:10px;
+
+
+    margin-bottom:18px;
+
+
+    border-radius:16px;
+
+
+    border:
+
+    1px solid #DDD6FE;
+
+
+    background:#FAF9FF;
+
+
+    font-size:16px;
+
+
+    outline:none;
+
+
+    transition:.3s;
+
+
+}
+
+
+
+input:focus,
+select:focus {
+
+
+    border-color:#7C3AED;
+
+
+    box-shadow:
+
+    0 0 0 4px rgba(124,58,237,.15);
+
+
+}
+
+
+
+
+
+/* ================= BUTTON ================= */
+
+
+button {
+
+
+    width:auto;
+
+
+    padding:14px 25px;
+
+
+    border:none;
+
+
+    border-radius:18px;
+
+
+    background:
+
+
+    linear-gradient(
+
+        135deg,
+
+        #8B5CF6,
+
+        #6D28D9
+
+    );
+
+
+    color:white;
+
+
+    font-size:15px;
+
+
+    font-weight:600;
+
+
+    cursor:pointer;
+
+
+    box-shadow:
+
+
+    0 10px 20px rgba(124,58,237,.25);
+
+
+    transition:.3s;
+
+
+}
+
+
+
+button:hover {
+
+
+    transform:translateY(-2px);
+
+
+    box-shadow:
+
+
+    0 15px 30px rgba(124,58,237,.35);
+
+
+}
+
+
+
+
+
+/* ================= MATÉRIAS ================= */
+
+
+.materia {
+
+
+    background:
+
+    linear-gradient(
+
+        135deg,
+
+        #FAF5FF,
+
+        #FFFFFF
+
+    );
+
+
+    padding:25px;
+
+
+    border-radius:24px;
+
+
+    border:
+
+    1px solid #E9D5FF;
+
+
+    margin-top:20px;
+
+
+}
+
+
+
+
+.materia h3 {
+
+
+    color:#4C1D95;
+
+
+    margin-bottom:20px;
+
+
+}
+
+
+
+
+
+/* ================= NOTAS ================= */
+
+
+.notas {
+
+
+    display:grid;
+
+
+    grid-template-columns:
+
+    repeat(auto-fit,minmax(130px,1fr));
+
+
+    gap:15px;
+
+
+}
+
+
+
+
+
+/* ================= STATUS ================= */
+
+
+.resultado {
+
+
+    margin-top:20px;
+
+
+    padding:15px;
+
+
+    border-radius:15px;
+
+
+    background:#F5F3FF;
+
+
+    font-weight:700;
+
+
+}
+
+
+
+.aprovado {
+
+
+    color:#059669;
+
+}
+
+
+
+.recuperacao {
+
+
+    color:#D97706;
+
+}
+
+
+
+.reprovado {
+
+
+    color:#DC2626;
+
+}
+
+
+
+
+
+/* ================= DELETE ================= */
+
+
+.remover {
+
+
+    margin-top:20px;
+
+
+    background:
+
+    linear-gradient(
+
+        135deg,
+
+        #EF4444,
+
+        #B91C1C
+
+    );
+
+
+}
+
+
+
+
+
+/* ================= MOBILE ================= */
+
+
+@media(max-width:600px){
+
+
+header h1{
+
+font-size:27px;
+
+}
+
+
+.logo{
+
+width:75px;
+
+height:75px;
+
+font-size:34px;
+
+}
+
+
+
+section{
+
+padding:22px;
+
+border-radius:22px;
+
+}
+
+
+
+}
+
+/* =========================
+   RESPONSIVIDADE MOBILE
+========================= */
+
+
+@media (max-width: 768px) {
+
+
+    body {
+
+        padding-bottom:30px;
+
+    }
+
+
+
+    header {
+
+        padding:35px 20px;
+
+        border-radius:
+
+        0 0 30px 30px;
+
+    }
+
+
+
+    .logo {
+
+        width:70px;
+
+        height:70px;
+
+        font-size:30px;
+
+        border-radius:22px;
+
+    }
+
+
+
+    header h1 {
+
+        font-size:26px;
+
+        margin-top:15px;
+
+    }
+
+
+
+    header p {
+
+        font-size:14px;
+
+        line-height:1.5;
+
+    }
+
+
+
+    main {
+
+        width:92%;
+
+        margin:25px auto;
+
+    }
+
+
+
+    section {
+
+        padding:20px;
+
+        border-radius:22px;
+
+        margin-bottom:18px;
+
+    }
+
+
+
+    h2 {
+
+        font-size:19px;
+
+    }
+
+
+
+    input,
+    select {
+
+
+        padding:14px;
+
+        font-size:15px;
+
+        border-radius:14px;
+
+
+    }
+
+
+
+
+    button {
+
+
+        width:100%;
+
+        padding:14px;
+
+        border-radius:16px;
+
+        margin-top:5px;
+
+
+    }
+
+
+
+
+    .materia {
+
+
+        padding:18px;
+
+        border-radius:20px;
+
+
+    }
+
+
+
+    .materia h3 {
+
+        font-size:18px;
+
+    }
+
+
+
+
+    .notas {
+
+
+        display:flex;
+
+        flex-direction:column;
+
+        gap:10px;
+
+
+    }
+
+
+
+    .resultado {
+
+
+        font-size:14px;
+
+        padding:12px;
+
+    }
+
+
+
+
+}
+
+
+
+
+/* CELULARES PEQUENOS */
+
+@media (max-width:400px){
+
+
+    header h1 {
+
+        font-size:23px;
+
+    }
+
+
+    section {
+
+        padding:16px;
+
+    }
+
+
+    .logo {
+
+        width:60px;
+
+        height:60px;
+
+        font-size:25px;
+
+    }
+
+
+
+}
