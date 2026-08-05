@@ -1,36 +1,51 @@
-let dados = JSON.parse(localStorage.getItem("notaPlus")) || {
+let dados = JSON.parse(localStorage.getItem("PlusNote")) || {
 
-    periodo: 4,
+    modo:"nota",
 
-    pontosNecessarios: 188,
+    periodo:"trimestre",
 
-    materias: []
+    mediaNecessaria:60,
+
+    conceitos:[],
+
+    materias:[]
 
 };
 
 
 
-const periodo =
-document.getElementById("periodo");
+const modoAvaliacao =
+document.getElementById("modoAvaliacao");
 
 
-const media =
-document.getElementById("mediaNecessaria");
+const areaConceitos =
+document.getElementById("areaConceitos");
 
 
-const lista =
+const listaConceitos =
+document.getElementById("listaConceitos");
+
+
+const listaMaterias =
 document.getElementById("listaMaterias");
 
 
 
 
 
-function salvarDados(){
+
+
+function salvar(){
+
 
     localStorage.setItem(
-        "notaPlus",
+
+        "PlusNote",
+
         JSON.stringify(dados)
+
     );
+
 
 }
 
@@ -38,15 +53,213 @@ function salvarDados(){
 
 
 
-function converterNumero(valor){
+
+
+
+function numero(valor){
+
 
     return Number(
-        valor
-        .toString()
-        .replace(",", ".")
-    );
+
+        String(valor).replace(",", ".")
+
+    ) || 0;
+
 
 }
+
+
+
+
+
+
+
+
+
+// =============================
+// PERÍODO LETIVO
+// =============================
+
+
+
+function criarPeriodos(materia){
+
+
+
+    let quantidade = 3;
+
+    let nome = "Trimestre";
+
+
+
+
+
+    if(dados.periodo === "bimestre"){
+
+
+        quantidade = 4;
+
+        nome = "Bimestre";
+
+
+    }
+
+
+
+    if(dados.periodo === "semestre"){
+
+
+        quantidade = 2;
+
+        nome = "Semestre";
+
+
+    }
+
+
+
+
+
+    materia.trimestres = [];
+
+
+
+
+
+    for(let i = 1; i <= quantidade; i++){
+
+
+
+        materia.trimestres.push({
+
+
+            nome: i+"º "+nome,
+
+
+            valores:[""]
+
+
+        });
+
+
+
+    }
+
+
+
+}
+
+
+
+
+
+
+
+
+
+function alterarPeriodo(){
+
+
+
+    dados.periodo =
+
+    document.getElementById(
+        "tipoPeriodo"
+    ).value;
+
+
+
+
+
+    dados.materias.forEach(materia=>{
+
+
+        criarPeriodos(materia);
+
+
+    });
+
+
+
+
+
+    salvar();
+
+
+    renderizar();
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+// =============================
+// MODO NOTA / CONCEITO
+// =============================
+
+
+
+function alterarModo(){
+
+
+
+    dados.modo =
+
+    modoAvaliacao.value;
+
+
+
+
+
+    if(dados.modo=="conceito"){
+
+
+
+        areaConceitos.classList.remove(
+            "oculto"
+        );
+
+
+
+    }
+    else{
+
+
+
+        areaConceitos.classList.add(
+            "oculto"
+        );
+
+
+
+    }
+
+
+
+
+
+    salvar();
+
+
+    renderizar();
+
+
+
+}
+
+
+
+
 
 
 
@@ -55,44 +268,296 @@ function converterNumero(valor){
 function salvarConfiguracao(){
 
 
-    dados.periodo =
-    Number(periodo.value);
+
+    dados.mediaNecessaria =
+
+
+    numero(
+
+        document.getElementById(
+            "mediaNecessaria"
+        ).value
+
+    );
 
 
 
-    dados.pontosNecessarios =
-    converterNumero(media.value);
 
 
-
-    dados.materias.forEach(materia=>{
-
-
-        if(materia.notas.length != dados.periodo){
-
-
-            materia.notas =
-            Array(dados.periodo)
-            .fill(0);
-
-
-        }
-
-
-    });
-
-
-
-    salvarDados();
+    salvar();
 
 
     renderizar();
+
 
 
 }
 
 
 
+
+
+
+
+
+
+// =============================
+// CONCEITOS
+// =============================
+
+
+
+function adicionarConceito(){
+
+
+
+    if(dados.conceitos.length >= 6){
+
+
+        alert(
+            "Máximo de 6 conceitos"
+        );
+
+
+        return;
+
+
+    }
+
+
+
+
+
+
+
+    let nome =
+
+
+    document.getElementById(
+        "nomeConceito"
+    ).value.trim();
+
+
+
+
+
+
+    let minimo =
+
+
+    numero(
+
+        document.getElementById(
+            "minimoConceito"
+        ).value
+
+    );
+
+
+
+
+
+
+
+    let maximo =
+
+
+    numero(
+
+        document.getElementById(
+            "maximoConceito"
+        ).value
+
+    );
+
+
+
+
+
+
+
+
+    if(nome==""){
+
+
+        alert(
+            "Digite o nome do conceito"
+        );
+
+
+        return;
+
+
+    }
+
+
+
+
+
+
+
+
+    dados.conceitos.push({
+
+
+        nome:nome,
+
+
+        minimo:minimo,
+
+
+        maximo:maximo
+
+
+
+    });
+
+
+
+
+
+
+
+
+    document.getElementById(
+        "nomeConceito"
+    ).value="";
+
+
+
+
+    document.getElementById(
+        "minimoConceito"
+    ).value="";
+
+
+
+
+    document.getElementById(
+        "maximoConceito"
+    ).value="";
+
+
+
+
+
+
+
+    salvar();
+
+
+    renderizar();
+
+
+
+}
+
+
+
+
+
+
+
+
+
+function removerConceito(i){
+
+
+
+    dados.conceitos.splice(i,1);
+
+
+
+    salvar();
+
+
+    renderizar();
+
+
+
+}
+
+
+
+
+
+
+
+
+
+function renderizarConceitos(){
+
+
+
+    listaConceitos.innerHTML = "";
+
+
+
+
+
+    dados.conceitos.forEach((c,i)=>{
+
+
+
+        listaConceitos.innerHTML += `
+
+
+        <div class="conceitoBox">
+
+
+            <div class="conceitoInfo">
+
+
+                <span class="conceitoNome">
+
+                    ${c.nome}
+
+                </span>
+
+
+
+                <span class="conceitoPontos">
+
+                    ${c.minimo} até ${c.maximo}
+
+                </span>
+
+
+            </div>
+
+
+
+            <button
+
+            class="btnExcluir"
+
+            onclick="removerConceito(${i})">
+
+
+            Excluir
+
+
+            </button>
+
+
+
+        </div>
+
+
+
+        `;
+
+
+
+    });
+
+
+
+}
+
+// =============================
+// MATÉRIAS
+// =============================
 
 
 
@@ -100,46 +565,77 @@ function adicionarMateria(){
 
 
     let nome =
-    document
-    .getElementById("materia")
-    .value
-    .trim();
+
+    document.getElementById(
+        "materia"
+    ).value.trim();
+
+
 
 
 
     if(nome==""){
 
-        alert("Digite o nome da matéria");
+
+        alert(
+            "Digite a matéria"
+        );
+
 
         return;
+
 
     }
 
 
 
-    dados.materias.push({
+
+
+    let novaMateria = {
+
 
         nome:nome,
 
 
-        notas:
-        Array(dados.periodo)
-        .fill(0)
-
-    });
+        trimestres:[]
 
 
 
-    document
-    .getElementById("materia")
-    .value="";
+    };
 
 
 
-    salvarDados();
+
+
+    criarPeriodos(novaMateria);
+
+
+
+
+
+    dados.materias.push(
+        novaMateria
+    );
+
+
+
+
+
+
+    document.getElementById(
+        "materia"
+    ).value="";
+
+
+
+
+
+
+    salvar();
 
 
     renderizar();
+
 
 
 }
@@ -150,188 +646,163 @@ function adicionarMateria(){
 
 
 
-function calcularPontos(materia){
+
+
+function removerMateria(i){
+
+
+
+    dados.materias.splice(i,1);
+
+
+
+    salvar();
+
+
+    renderizar();
+
+
+
+}
+
+
+
+
+
+
+
+
+
+function alterarValorTrimestre(
+materia,
+periodo,
+valor
+){
+
+
+
+    materia.trimestres[periodo]
+    .valores[0] = valor;
+
+
+
+
+
+    salvar();
+
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+// =============================
+// CÁLCULO
+// =============================
+
+
+
+function valorConceito(nome){
+
+
+
+    let conceito =
+
+
+    dados.conceitos.find(
+
+        c=>c.nome==nome
+
+    );
+
+
+
+
+
+    if(!conceito){
+
+
+        return 0;
+
+
+    }
+
+
+
+
+
+    return (
+
+        conceito.minimo +
+
+        conceito.maximo
+
+    ) / 2;
+
+
+
+}
+
+
+
+
+
+
+
+
+
+function calcularMateria(materia){
+
 
 
     let total = 0;
 
 
 
-    materia.notas.forEach(nota=>{
 
 
-        total += converterNumero(nota);
 
+    materia.trimestres.forEach(periodo=>{
 
-    });
 
 
 
-    let falta =
-    dados.pontosNecessarios - total;
 
+        periodo.valores.forEach(valor=>{
 
 
-    if(falta <= 0){
 
 
-        return {
 
+            if(dados.modo=="nota"){
 
-            texto:
-            `✓ Aprovado | Total: ${total.toFixed(1)} pontos`,
 
 
-            classe:"aprovado"
+                total += numero(valor);
 
 
-        };
 
+            }
+            else{
 
-    }
 
 
+                total += valorConceito(valor);
 
-    return {
 
 
-        texto:
-        `Total: ${total.toFixed(1)} pontos | Falta: ${falta.toFixed(1)} pontos`,
+            }
 
 
-        classe:"recuperacao"
 
-
-    };
-
-
-}
-
-
-
-
-
-
-
-
-function atualizarNota(
-materia,
-indice,
-valor
-){
-
-
-
-    materia.notas[indice] =
-    converterNumero(valor);
-
-
-
-    salvarDados();
-
-
-    renderizar();
-
-
-
-}
-
-
-
-
-
-
-
-
-function removerMateria(index){
-
-
-    dados.materias.splice(
-        index,
-        1
-    );
-
-
-    salvarDados();
-
-
-    renderizar();
-
-
-}
-
-
-
-
-
-
-
-
-function renderizar(){
-
-
-    periodo.value =
-    dados.periodo;
-
-
-    media.value =
-    dados.pontosNecessarios;
-
-
-
-    lista.innerHTML="";
-
-
-
-
-    dados.materias.forEach(
-    (materia,index)=>{
-
-
-        let card =
-        document.createElement("div");
-
-
-        card.className="materia";
-
-
-
-        let inputs="";
-
-
-
-        materia.notas.forEach(
-        (nota,i)=>{
-
-
-            inputs += `
-
-
-            <input
-
-            type="text"
-
-            value="${nota}"
-
-            placeholder="Nota ${i+1}"
-
-
-            onchange="
-
-            atualizarNota(
-
-            dados.materias[${index}],
-
-            ${i},
-
-            this.value
-
-            )
-
-            ">
-
-
-            `;
 
 
         });
@@ -340,59 +811,385 @@ function renderizar(){
 
 
 
+    });
+
+
+
+
+
+
+
+    let falta =
+
+
+    dados.mediaNecessaria - total;
+
+
+
+
+
+
+
+    if(falta <= 0){
+
+
+
+        return {
+
+
+            texto:
+
+            "Aprovado - "
+
+            +
+
+            total.toFixed(2)
+
+            +
+
+            " pontos",
+
+
+
+
+            classe:
+
+            "aprovado"
+
+
+
+        };
+
+
+
+    }
+
+
+
+
+
+
+
+    return {
+
+
+
+        texto:
+
+
+        "Total "
+
+        +
+
+        total.toFixed(2)
+
+        +
+
+        " | Falta "
+
+        +
+
+        falta.toFixed(2),
+
+
+
+
+        classe:
+
+        "recuperacao"
+
+
+
+    };
+
+
+
+}
+
+
+
+
+
+
+
+
+
+// =============================
+// RENDERIZAÇÃO DAS MATÉRIAS
+// =============================
+
+
+
+function renderizarMaterias(){
+
+
+
+    listaMaterias.innerHTML = "";
+
+
+
+
+
+    dados.materias.forEach(
+    (materia,index)=>{
+
+
+
+
+
+        let html = "";
+
+
+
+
+
+        materia.trimestres.forEach(
+        (periodo,i)=>{
+
+
+
+
+
+
+            let campo = "";
+
+
+
+
+
+
+
+            if(dados.modo=="nota"){
+
+
+
+
+
+                campo = `
+
+
+                <input
+
+
+                type="number"
+
+
+                placeholder="Nota"
+
+
+                value="${periodo.valores[0] || ""}"
+
+
+
+                onchange="
+
+                alterarValorTrimestre(
+
+                dados.materias[${index}],
+
+                ${i},
+
+                this.value
+
+                )"
+
+
+                >
+
+
+                `;
+
+
+
+
+            }
+            else{
+
+
+
+
+
+                campo = `
+
+
+                <select
+
+
+                onchange="
+
+                alterarValorTrimestre(
+
+                dados.materias[${index}],
+
+                ${i},
+
+                this.value
+
+                )"
+
+
+
+                >
+
+
+
+                <option>
+
+                Escolha
+
+                </option>
+
+
+
+
+                ${
+
+                dados.conceitos.map(c=>`
+
+
+                <option
+
+                ${periodo.valores[0]==c.nome?"selected":""}
+
+                >
+
+                ${c.nome}
+
+                </option>
+
+
+
+                `).join("")
+
+
+                }
+
+
+
+                </select>
+
+
+
+                `;
+
+
+
+            }
+
+
+
+
+
+
+
+
+            html += `
+
+
+
+            <div class="trimestre">
+
+
+            <h4>
+
+            ${periodo.nome}
+
+            </h4>
+
+
+
+            <div class="notas">
+
+
+            ${campo}
+
+
+            </div>
+
+
+
+            </div>
+
+
+
+            `;
+
+
+
+
+        });
+
+
+
+
+
+
+
         let resultado =
-        calcularPontos(materia);
+
+        calcularMateria(materia);
 
 
 
 
 
-        card.innerHTML=`
+
+
+
+        listaMaterias.innerHTML += `
+
+
+
+        <div class="materia">
+
 
 
         <h3>
+
         ${materia.nome}
+
         </h3>
 
 
 
-        <div class="notas">
 
-        ${inputs}
-
-        </div>
+        ${html}
 
 
 
 
         <div class="resultado ${resultado.classe}">
 
+
         ${resultado.texto}
+
 
         </div>
 
 
 
-        <button
 
-        class="remover"
 
-        onclick="
 
-        removerMateria(${index})
+        <button onclick="removerMateria(${index})">
 
-        ">
 
-        Excluir
+        Excluir matéria
+
 
         </button>
+
+
+
+        </div>
+
 
 
         `;
 
 
 
-        lista.appendChild(card);
+
 
 
 
@@ -401,6 +1198,126 @@ function renderizar(){
 
 
 }
+
+// =============================
+// TELA PRINCIPAL
+// =============================
+
+
+function renderizar(){
+
+
+
+    modoAvaliacao.value =
+
+    dados.modo;
+
+
+
+
+
+    document.getElementById(
+        "tipoPeriodo"
+    ).value =
+
+    dados.periodo;
+
+
+
+
+
+
+    document.getElementById(
+        "mediaNecessaria"
+    ).value =
+
+    dados.mediaNecessaria;
+
+
+
+
+
+
+
+    areaConceitos.classList.toggle(
+
+        "oculto",
+
+        dados.modo!="conceito"
+
+    );
+
+
+
+
+
+
+
+    renderizarConceitos();
+
+
+
+
+    renderizarMaterias();
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+// =============================
+// CORREÇÃO DE DADOS ANTIGOS
+// =============================
+
+
+
+if(!dados.periodo){
+
+
+    dados.periodo = "trimestre";
+
+
+}
+
+
+
+
+
+
+
+dados.materias.forEach(materia=>{
+
+
+
+    if(!materia.trimestres || materia.trimestres.length==0){
+
+
+
+        criarPeriodos(materia);
+
+
+
+    }
+
+
+
+});
+
+
+
+
+
+
+salvar();
+
 
 
 
