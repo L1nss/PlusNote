@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<link rel="Stylesheet" href="styles.css"
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Nota+</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+
+<body>
+
+
+<header>
+
+   
+
+
+    <h1>
+        Plus note
+    </h1>
+
+
+    <p>
+        Você no controle de suas notas :D
+    </p>
+
+</header>
+
+
+
+<main>
+
+
+
+<section>
+
+<h2>
+⚙ Configuração
+</h2>
+
+
+<label>
+Sistema de avaliação
+</label>
+
+
+<select id="periodo">
+
+<option value="4">
+Bimestre (4 notas)
+</option>
+
+
+<option value="3">
+Trimestre (3 notas)
+</option>
+
+
+<option value="2">
+Semestre (2 notas)
+</option>
+
+
+</select>
+
+
+
+<label>
+Pontos anuais necessários
+</label>
+
+
+<input 
+type="number"
+id="mediaNecessaria"
+value="60"
+min="0"
+max="100"
+>
+
+
+
+<button onclick="salvarConfiguracao()">
+
+Salvar configuração
+
+</button>
+
+
+</section>
+
+
+
+
+
+<section>
+
+
+<h2>
+📚 Nova matéria
+</h2>
+
+
+<input 
+type="text"
+id="materia"
+placeholder="Digite a matéria"
+>
+
+
+<button onclick="adicionarMateria()">
+
+Adicionar matéria
+
+</button>
+
+
+
+</section>
+
+
+
+
+
+<section>
+
+
+<h2>
+Minhas matérias
+</h2>
+
+
+
+<div id="listaMaterias">
+
+</div>
+
+
+</section>
+
+
+
+
+</main>
+
+
+
+
+<script src="script.js"></script>
+
+
+</body>
+
+</html>
