@@ -1,37 +1,47 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-<link rel="Stylesheet" href="styles.css"
+
 <head>
 
-    <meta charset="UTF-8">
+<meta charset="UTF-8">
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Nota+</title>
+<title>PlusNote</title>
 
-    <link rel="stylesheet" href="style.css">
+
+<link rel="stylesheet" href="styles.css">
+
 
 </head>
+
 
 
 <body>
 
 
+
 <header>
 
-   
+
+<div class="logo">
++
+</div>
 
 
-    <h1>
-        Plus note
-    </h1>
+<h1>
+PlusNote
+</h1>
 
 
-    <p>
-        Você no controle de suas notas :D
-    </p>
+<p>
+Você no controle de suas notas :D
+</p>
+
 
 </header>
+
+
 
 
 
@@ -39,11 +49,17 @@
 
 
 
+
+
 <section>
+
 
 <h2>
 ⚙ Configuração
 </h2>
+
+
+
 
 
 <label>
@@ -51,24 +67,60 @@ Sistema de avaliação
 </label>
 
 
-<select id="periodo">
 
-<option value="4">
-Bimestre (4 notas)
+<select id="modoAvaliacao" onchange="alterarModo()">
+
+
+
+<option value="nota">
+Notas
 </option>
 
 
-<option value="3">
-Trimestre (3 notas)
+
+<option value="conceito">
+Conceitos
 </option>
 
-
-<option value="2">
-Semestre (2 notas)
-</option>
 
 
 </select>
+
+
+
+
+
+<label>
+Período letivo
+</label>
+
+
+<select id="tipoPeriodo" onchange="alterarPeriodo()">
+
+
+
+<option value="trimestre">
+Trimestre
+</option>
+
+
+
+<option value="bimestre">
+Bimestre
+</option>
+
+
+
+<option value="semestre">
+Semestre
+</option>
+
+
+
+</select>
+
+
+
 
 
 
@@ -77,13 +129,21 @@ Pontos anuais necessários
 </label>
 
 
-<input 
+<input
+
 type="number"
+
 id="mediaNecessaria"
+
 value="60"
+
 min="0"
+
 max="100"
+
 >
+
+
 
 
 
@@ -100,19 +160,118 @@ Salvar configuração
 
 
 
+
+
+
+
+<section id="areaConceitos" class="oculto">
+
+
+
+<h2>
+Cadastro de conceitos
+</h2>
+
+
+
+
+
+<input
+
+type="text"
+
+id="nomeConceito"
+
+placeholder="Ex: CSA"
+
+>
+
+
+
+
+
+<input
+
+type="number"
+
+id="minimoConceito"
+
+placeholder="Valor mínimo"
+
+>
+
+
+
+
+
+<input
+
+type="number"
+
+id="maximoConceito"
+
+placeholder="Valor máximo"
+
+>
+
+
+
+
+
+
+
+<button onclick="adicionarConceito()">
+
+Adicionar conceito
+
+</button>
+
+
+
+
+
+
+
+<div id="listaConceitos">
+
+</div>
+
+
+
+</section>
+
+
+
+
+
+
+
+
+
 <section>
 
 
 <h2>
-📚 Nova matéria
+Nova matéria
 </h2>
 
 
-<input 
+
+
+<input
+
 type="text"
+
 id="materia"
+
 placeholder="Digite a matéria"
+
 >
+
+
+
+
+
 
 
 <button onclick="adicionarMateria()">
@@ -129,6 +288,10 @@ Adicionar matéria
 
 
 
+
+
+
+
 <section>
 
 
@@ -138,12 +301,20 @@ Minhas matérias
 
 
 
+
+
 <div id="listaMaterias">
 
 </div>
 
 
+
+
+
 </section>
+
+
+
 
 
 
@@ -153,9 +324,14 @@ Minhas matérias
 
 
 
+
+
+
 <script src="script.js"></script>
 
 
+
 </body>
+
 
 </html>
