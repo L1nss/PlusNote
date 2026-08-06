@@ -1,28 +1,50 @@
-const formulario = document.getElementById("loginForm");
+function entrar(){
 
 
-formulario.addEventListener("submit", function(e){
+    const usuario =
+    document.getElementById("usuario").value.trim();
 
 
-e.preventDefault();
-
-
-
-let email =
-document.getElementById("email").value;
-
-
-let senha =
-document.getElementById("senha").value;
+    const senha =
+    document.getElementById("senha").value.trim();
 
 
 
-if(email === "" || senha === ""){
+    if(usuario === "" || senha === ""){
 
 
-alert("Preencha todos os campos");
+        alert(
+            "Preencha usuário e senha"
+        );
 
-return;
+
+        return;
+
+
+    }
+
+
+
+
+    /*
+       Login simples usando localStorage
+       Libera acesso ao index.html
+    */
+
+
+    localStorage.setItem(
+
+        "usuarioLogado",
+
+        "true"
+
+    );
+
+
+
+    window.location.href =
+    "index.html";
+
 
 
 }
@@ -30,18 +52,20 @@ return;
 
 
 
-// salva usuário logado
 
-localStorage.setItem(
-"usuarioLogado",
-"true"
-);
+// Permite apertar ENTER para entrar
+
+document.addEventListener(
+"keydown",
+
+function(event){
 
 
+    if(event.key === "Enter"){
 
-window.location.href =
-"index.html";
+        entrar();
 
+    }
 
 
 });
