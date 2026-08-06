@@ -1,50 +1,103 @@
-const themeButton = document.getElementById("themeToggle");
+// =============================
+// CONTROLE DE TEMA PLUSNOTE
+// =============================
 
 
-// Carrega o tema salvo
-const temaSalvo = localStorage.getItem("tema");
+const botaoTema = document.getElementById("themeToggle");
 
 
-if (temaSalvo === "dark") {
+// Recupera tema salvo
+
+const temaAtual = localStorage.getItem("tema");
+
+
+
+if(temaAtual === "dark"){
 
     document.body.classList.add("dark");
 
-    if(themeButton){
-        themeButton.innerHTML = "☀️";
-    }
 
 }
 
 
-// Alterna o tema
-if(themeButton){
 
-themeButton.addEventListener("click",()=>{
+// Atualiza ícone
 
-
-    document.body.classList.toggle("dark");
+function atualizarIcone(){
 
 
-    const darkMode =
-    document.body.classList.contains("dark");
+    if(!botaoTema) return;
 
 
-    if(darkMode){
 
-        localStorage.setItem("tema","dark");
+    if(document.body.classList.contains("dark")){
 
-        themeButton.innerHTML="☀️";
+
+        botaoTema.innerHTML = "☀️";
+
 
     }else{
 
-        localStorage.setItem("tema","light");
 
-        themeButton.innerHTML="🌙";
+        botaoTema.innerHTML = "🌙";
+
 
     }
 
 
-});
+}
+
+
+
+atualizarIcone();
+
+
+
+
+
+// Clique no botão
+
+
+if(botaoTema){
+
+
+    botaoTema.addEventListener("click", function(){
+
+
+
+        document.body.classList.toggle("dark");
+
+
+
+        if(document.body.classList.contains("dark")){
+
+
+            localStorage.setItem(
+                "tema",
+                "dark"
+            );
+
+
+
+        }else{
+
+
+            localStorage.setItem(
+                "tema",
+                "light"
+            );
+
+
+        }
+
+
+
+        atualizarIcone();
+
+
+
+    });
+
 
 
 }
