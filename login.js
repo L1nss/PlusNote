@@ -1,6 +1,5 @@
 function entrar(){
 
-
     const usuario =
     document.getElementById("usuario").value.trim();
 
@@ -12,60 +11,40 @@ function entrar(){
 
     if(usuario === "" || senha === ""){
 
-
-        alert(
-            "Preencha usuário e senha"
-        );
-
+        alert("Preencha usuário e senha");
 
         return;
-
 
     }
 
 
 
-
-    /*
-       Login simples usando localStorage
-       Libera acesso ao index.html
-    */
-
+    // Cria a sessão para liberar o index.html
 
     localStorage.setItem(
-
         "usuarioLogado",
-
         "true"
-
     );
 
 
 
-    window.location.href =
-    "index.html";
-
-
+    window.location.href = "index.html";
 
 }
 
 
 
-
-
-// Permite apertar ENTER para entrar
+// Permite entrar pressionando ENTER
 
 document.addEventListener(
 "keydown",
 
 function(event){
 
-
     if(event.key === "Enter"){
 
         entrar();
 
     }
-
 
 });
