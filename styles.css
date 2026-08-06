@@ -1395,7 +1395,17 @@ body.dark .materia{
 
 }
 
+/* Estilos para a logo do PlusNote */
+.logo-container {
+    text-align: center; /* Centraliza a logo na página */
+    margin-bottom: 20px; /* Dá um espaço entre a logo e o conteúdo abaixo */
+}
 
+.logo-site {
+    max-width: 120px; /* Controla o tamanho máximo da logo */
+    height: auto;     /* Mantém as proporções da imagem */
+    display: inline-block;
+}
 
 
 
