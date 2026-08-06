@@ -763,6 +763,21 @@ h1{
 }
 
   
+/* LOGO DA TELA DE LOGIN */
 
+.logo-site{
+
+    width:90px;
+    height:90px;
+
+    object-fit:cover;
+
+    margin:0 auto 15px;
+
+    display:block;
+
+    border-radius:20px;
+
+}
 
 
