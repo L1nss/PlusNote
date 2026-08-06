@@ -1529,3 +1529,25 @@ body.dark .theme-button{
 
 
 }
+
+/* Estilo moderno e redondo para a logo */
+.logo-site {
+    width: 120px;          /* Define a largura */
+    height: 120px;         /* Altura igual à largura garante o formato de círculo */
+    object-fit: contain;   /* Garante que o ícone não fique esticado ou cortado */
+    background-color: #ffffff; /* Mantém o fundo branco limpo */
+    border-radius: 50%;    /* Arredonda 100% da borda, criando o círculo */
+    padding: 15px;         /* Dá um respiro interno para o ícone não grudar na borda */
+    
+    /* Sombra suave e moderna para dar profundidade (efeito 3D leve) */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2); 
+    
+    /* Transição suave para o efeito de animação abaixo */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; 
+}
+
+/* Efeito interativo: a logo "salta" levemente ao passar o mouse */
+.logo-site:hover {
+    transform: translateY(-5px) scale(1.05); 
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.3);
+}
