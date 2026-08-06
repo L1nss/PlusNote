@@ -23,15 +23,13 @@ body {
 
     color:#1F2937;
 
+    transition:.3s;
+
 }
 
 
 
-
-
-
 /* ================= HEADER ================= */
-
 
 
 header {
@@ -63,6 +61,9 @@ header {
     box-shadow:
 
     0 20px 40px rgba(124,58,237,.25);
+
+
+    transition:.3s;
 
 
 }
@@ -112,6 +113,9 @@ header {
     0 10px 30px rgba(0,0,0,.15);
 
 
+    transition:.3s;
+
+
 }
 
 
@@ -152,9 +156,7 @@ header p {
 
 
 
-
 /* ================= MAIN ================= */
-
 
 
 main {
@@ -177,9 +179,7 @@ main {
 
 
 
-
 /* ================= CARDS ================= */
-
 
 
 section {
@@ -232,6 +232,9 @@ section:hover {
 
 
 
+/* ================= TITULOS ================= */
+
+
 h2 {
 
 
@@ -245,10 +248,6 @@ h2 {
 
 
 }
-
-
-
-
 
 
 
@@ -275,9 +274,7 @@ label {
 
 
 
-
 /* ================= INPUT ================= */
-
 
 
 input,
@@ -349,9 +346,7 @@ select:focus {
 
 
 
-
 /* ================= BUTTON ================= */
-
 
 
 button {
@@ -433,7 +428,6 @@ button:hover {
 /* ================= OCULTO ================= */
 
 
-
 .oculto {
 
 
@@ -442,14 +436,7 @@ button:hover {
 
 }
 
-
-
-
-
-
-
 /* ================= CONCEITOS ================= */
-
 
 
 .conceitoBox {
@@ -496,7 +483,13 @@ button:hover {
     1px solid #E9D5FF;
 
 
+
+    transition:.3s;
+
+
 }
+
+
 
 
 
@@ -510,6 +503,8 @@ button:hover {
 
 
 }
+
+
 
 
 
@@ -529,6 +524,8 @@ button:hover {
 
 
 
+
+
 .conceitoPontos {
 
 
@@ -539,6 +536,8 @@ button:hover {
 
 
 }
+
+
 
 
 
@@ -559,7 +558,6 @@ button:hover {
     );
 
 
-
 }
 
 
@@ -568,9 +566,7 @@ button:hover {
 
 
 
-
 /* ================= MATÉRIAS ================= */
-
 
 
 .materia {
@@ -613,6 +609,7 @@ button:hover {
 
 
 
+
 .materia h3 {
 
 
@@ -631,7 +628,6 @@ button:hover {
 
 
 /* ================= TRIMESTRES ================= */
-
 
 
 .trimestre {
@@ -663,6 +659,8 @@ button:hover {
 
 
 
+
+
 .trimestre h4 {
 
 
@@ -680,9 +678,7 @@ button:hover {
 
 
 
-
 /* ================= NOTAS ================= */
-
 
 
 .notas {
@@ -708,9 +704,7 @@ button:hover {
 
 
 
-
 /* ================= RESULTADO ================= */
-
 
 
 .resultado {
@@ -737,6 +731,8 @@ button:hover {
 
 
 
+
+
 .aprovado {
 
 
@@ -750,6 +746,8 @@ button:hover {
 
 
 
+
+
 .recuperacao {
 
 
@@ -760,6 +758,8 @@ button:hover {
 
 
 }
+
+
 
 
 
@@ -780,9 +780,7 @@ button:hover {
 
 
 
-
 /* ================= DELETE MATÉRIA ================= */
-
 
 
 .materia button {
@@ -814,9 +812,7 @@ button:hover {
 
 
 
-
 /* ================= MOBILE ================= */
-
 
 
 @media(max-width:768px){
@@ -959,6 +955,10 @@ button {
 
 
 
+
+
+
+
 @media(max-width:400px){
 
 
@@ -996,6 +996,526 @@ section {
 
 
 }
+
+
+}
+
+/* =========================
+   BOTÃO TEMA
+========================= */
+
+
+.theme-button{
+
+
+    position:fixed;
+
+
+    top:20px;
+
+    right:20px;
+
+
+
+    width:45px !important;
+
+    height:45px;
+
+
+
+    padding:0 !important;
+
+
+
+    border:none;
+
+
+
+    border-radius:50%;
+
+
+
+    cursor:pointer;
+
+
+
+    font-size:20px;
+
+
+
+    background:white;
+
+
+
+    color:#7C3AED;
+
+
+
+    display:flex;
+
+
+
+    align-items:center;
+
+
+
+    justify-content:center;
+
+
+
+    box-shadow:
+
+    0 5px 15px rgba(0,0,0,.2);
+
+
+
+    z-index:1000;
+
+
+
+}
+
+
+
+.theme-button:hover{
+
+
+    transform:scale(1.08);
+
+
+}
+
+
+
+
+
+
+
+/* =========================
+   TRANSIÇÃO DO TEMA
+========================= */
+
+
+body,
+header,
+section,
+input,
+select,
+.materia,
+.trimestre,
+.conceitoBox,
+.resultado,
+.theme-button{
+
+
+    transition:
+
+    background .3s,
+
+    color .3s,
+
+    border .3s;
+
+
+}
+
+
+
+
+
+
+
+/* =========================
+   MODO ESCURO
+========================= */
+
+
+body.dark{
+
+
+    background:
+
+    linear-gradient(
+
+        135deg,
+
+        #09090b,
+
+        #18181b
+
+    );
+
+
+
+    color:#f4f4f5;
+
+
+}
+
+
+
+
+
+
+
+/* HEADER */
+
+
+body.dark header{
+
+
+    background:
+
+
+    linear-gradient(
+
+        135deg,
+
+        #312e81,
+
+        #111827
+
+    );
+
+
+}
+
+
+
+
+
+
+
+/* LOGO */
+
+
+body.dark .logo{
+
+
+    background:#27272a;
+
+
+
+    color:#c4b5fd;
+
+
+}
+
+
+
+
+
+
+
+/* CARDS */
+
+
+body.dark section{
+
+
+    background:#18181b;
+
+
+
+    border-color:#3f3f46;
+
+
+}
+
+
+
+
+
+
+
+/* TEXTOS */
+
+
+body.dark h1,
+body.dark h2,
+body.dark h3,
+body.dark p,
+body.dark label{
+
+
+    color:#f4f4f5;
+
+
+}
+
+
+
+
+
+body.dark h2{
+
+
+    color:#c4b5fd;
+
+
+}
+
+
+
+
+
+
+
+body.dark label{
+
+
+    color:#ddd6fe;
+
+
+}
+
+
+
+
+
+
+
+/* INPUTS */
+
+
+body.dark input,
+body.dark select{
+
+
+    background:#27272a;
+
+
+
+    color:white;
+
+
+
+    border-color:#52525b;
+
+
+}
+
+
+
+
+
+body.dark input::placeholder{
+
+
+    color:#a1a1aa;
+
+
+}
+
+
+
+
+
+
+
+/* CONCEITOS */
+
+
+body.dark .conceitoBox{
+
+
+    background:
+
+
+    linear-gradient(
+
+        135deg,
+
+        #27272a,
+
+        #18181b
+
+    );
+
+
+
+    border-color:#52525b;
+
+
+}
+
+
+
+
+
+body.dark .conceitoNome{
+
+
+    color:#ddd6fe;
+
+
+}
+
+
+
+
+
+body.dark .conceitoPontos{
+
+
+    color:#a1a1aa;
+
+
+}
+
+
+
+
+
+
+
+/* MATÉRIAS */
+
+
+body.dark .materia{
+
+
+    background:
+
+
+    linear-gradient(
+
+        135deg,
+
+        #27272a,
+
+        #18181b
+
+    );
+
+
+
+    border-color:#52525b;
+
+
+}
+
+
+
+
+
+
+
+/* TRIMESTRES */
+
+
+body.dark .trimestre{
+
+
+    background:#18181b;
+
+
+
+    border-color:#52525b;
+
+
+}
+
+
+
+
+
+body.dark .trimestre h4{
+
+
+    color:#c4b5fd;
+
+
+}
+
+
+
+
+
+
+
+/* RESULTADOS */
+
+
+body.dark .resultado{
+
+
+    background:#27272a;
+
+
+}
+
+
+
+
+
+
+
+body.dark .aprovado{
+
+
+    background:#064e3b;
+
+
+
+    color:#6ee7b7;
+
+
+}
+
+
+
+
+
+
+
+body.dark .recuperacao{
+
+
+    background:#78350f;
+
+
+
+    color:#fde68a;
+
+
+}
+
+
+
+
+
+
+
+body.dark .reprovado{
+
+
+    background:#7f1d1d;
+
+
+
+    color:#fecaca;
+
+
+}
+
+
+
+
+
+
+
+/* BOTÃO TEMA NO ESCURO */
+
+
+body.dark .theme-button{
+
+
+    background:#27272a;
+
+
+
+    color:white;
 
 
 }
