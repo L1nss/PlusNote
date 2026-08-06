@@ -1,265 +1,150 @@
 let dados = JSON.parse(localStorage.getItem("PlusNote")) || {
 
     modo:"nota",
-
     periodo:"trimestre",
-
     mediaNecessaria:60,
-
     conceitos:[],
-
     materias:[]
 
 };
 
 
-
 const modoAvaliacao =
 document.getElementById("modoAvaliacao");
-
 
 const areaConceitos =
 document.getElementById("areaConceitos");
 
-
 const listaConceitos =
 document.getElementById("listaConceitos");
-
 
 const listaMaterias =
 document.getElementById("listaMaterias");
 
 
 
-
-
-
-
 function salvar(){
 
-
     localStorage.setItem(
-
         "PlusNote",
-
         JSON.stringify(dados)
-
     );
 
-
 }
-
-
-
-
-
 
 
 
 function numero(valor){
 
+    if(valor === "" || valor === null || valor === undefined){
+        return null;
+    }
 
     return Number(
-
         String(valor).replace(",", ".")
-
-    ) || 0;
-
+    );
 
 }
 
 
-
-
-
-
-
-
-
-// =============================
-// PERÍODO LETIVO
-// =============================
 
 
 
 function criarPeriodos(materia){
 
-
-
     let quantidade = 3;
-
     let nome = "Trimestre";
-
-
-
 
 
     if(dados.periodo === "bimestre"){
 
-
         quantidade = 4;
-
         nome = "Bimestre";
 
-
     }
-
 
 
     if(dados.periodo === "semestre"){
 
-
         quantidade = 2;
-
         nome = "Semestre";
 
-
     }
-
-
-
 
 
     materia.trimestres = [];
 
 
-
-
-
     for(let i = 1; i <= quantidade; i++){
-
-
 
         materia.trimestres.push({
 
-
-            nome: i+"º "+nome,
-
+            nome:i+"º "+nome,
 
             valores:[""]
 
-
         });
-
-
 
     }
 
-
-
 }
-
-
-
-
-
 
 
 
 
 function alterarPeriodo(){
 
-
-
     dados.periodo =
-
     document.getElementById(
         "tipoPeriodo"
     ).value;
 
 
-
-
-
     dados.materias.forEach(materia=>{
 
-
         criarPeriodos(materia);
-
 
     });
 
 
-
-
-
     salvar();
 
-
     renderizar();
-
-
 
 }
 
 
-
-
-
-
-
-
-
-
-
-
-// =============================
-// MODO NOTA / CONCEITO
-// =============================
 
 
 
 function alterarModo(){
 
-
-
     dados.modo =
-
     modoAvaliacao.value;
-
-
 
 
 
     if(dados.modo=="conceito"){
 
-
-
         areaConceitos.classList.remove(
             "oculto"
         );
 
-
-
     }
     else{
-
-
 
         areaConceitos.classList.add(
             "oculto"
         );
 
-
-
     }
-
-
-
 
 
     salvar();
 
-
     renderizar();
 
-
-
 }
-
-
-
-
 
 
 
@@ -267,29 +152,17 @@ function alterarModo(){
 
 function salvarConfiguracao(){
 
-
-
     dados.mediaNecessaria =
-
-
     numero(
-
         document.getElementById(
             "mediaNecessaria"
         ).value
-
-    );
-
-
-
+    ) || 0;
 
 
     salvar();
 
-
     renderizar();
-
-
 
 }
 
@@ -297,125 +170,65 @@ function salvarConfiguracao(){
 
 
 
-
-
-
-
-// =============================
-// CONCEITOS
-// =============================
-
-
-
 function adicionarConceito(){
-
 
 
     if(dados.conceitos.length >= 6){
 
-
-        alert(
-            "Máximo de 6 conceitos"
-        );
-
+        alert("Máximo de 6 conceitos");
 
         return;
-
 
     }
 
 
 
-
-
-
-
     let nome =
-
-
     document.getElementById(
         "nomeConceito"
     ).value.trim();
 
 
 
-
-
-
     let minimo =
-
-
     numero(
-
         document.getElementById(
             "minimoConceito"
         ).value
-
     );
-
-
-
-
 
 
 
     let maximo =
-
-
     numero(
-
         document.getElementById(
             "maximoConceito"
         ).value
-
     );
-
-
-
-
-
 
 
 
     if(nome==""){
 
-
         alert(
             "Digite o nome do conceito"
         );
 
-
         return;
-
 
     }
 
 
 
-
-
-
-
-
     dados.conceitos.push({
-
 
         nome:nome,
 
-
         minimo:minimo,
-
 
         maximo:maximo
 
-
-
     });
-
-
-
-
-
 
 
 
@@ -424,13 +237,9 @@ function adicionarConceito(){
     ).value="";
 
 
-
-
     document.getElementById(
         "minimoConceito"
     ).value="";
-
-
 
 
     document.getElementById(
@@ -439,81 +248,42 @@ function adicionarConceito(){
 
 
 
-
-
-
-
     salvar();
-
 
     renderizar();
 
-
-
 }
-
-
-
-
-
-
-
-
 
 function removerConceito(i){
 
-
-
     dados.conceitos.splice(i,1);
-
-
 
     salvar();
 
-
     renderizar();
 
-
-
 }
-
-
-
-
-
 
 
 
 
 function renderizarConceitos(){
 
-
-
-    listaConceitos.innerHTML = "";
-
-
-
+    listaConceitos.innerHTML="";
 
 
     dados.conceitos.forEach((c,i)=>{
 
 
-
         listaConceitos.innerHTML += `
-
 
         <div class="conceitoBox">
 
-
             <div class="conceitoInfo">
 
-
                 <span class="conceitoNome">
-
                     ${c.nome}
-
                 </span>
-
 
 
                 <span class="conceitoPontos">
@@ -533,31 +303,25 @@ function renderizarConceitos(){
 
             onclick="removerConceito(${i})">
 
-
             Excluir
 
-
             </button>
-
 
 
         </div>
 
 
-
         `;
-
 
 
     });
 
 
-
 }
 
-// =============================
-// MATÉRIAS
-// =============================
+
+
+
 
 
 
@@ -565,12 +329,9 @@ function adicionarMateria(){
 
 
     let nome =
-
     document.getElementById(
         "materia"
     ).value.trim();
-
-
 
 
 
@@ -584,32 +345,24 @@ function adicionarMateria(){
 
         return;
 
-
     }
 
 
 
 
-
-    let novaMateria = {
+    let novaMateria={
 
 
         nome:nome,
 
-
         trimestres:[]
-
 
 
     };
 
 
 
-
-
     criarPeriodos(novaMateria);
-
-
 
 
 
@@ -619,15 +372,9 @@ function adicionarMateria(){
 
 
 
-
-
-
     document.getElementById(
         "materia"
     ).value="";
-
-
-
 
 
 
@@ -637,10 +384,7 @@ function adicionarMateria(){
     renderizar();
 
 
-
 }
-
-
 
 
 
@@ -651,9 +395,7 @@ function adicionarMateria(){
 function removerMateria(i){
 
 
-
     dados.materias.splice(i,1);
-
 
 
     salvar();
@@ -662,9 +404,7 @@ function removerMateria(i){
     renderizar();
 
 
-
 }
-
 
 
 
@@ -680,18 +420,15 @@ valor
 ){
 
 
-
     materia.trimestres[periodo]
-    .valores[0] = valor;
-
-
+    .valores[0]=valor;
 
 
 
     salvar();
 
 
-
+    renderizar();
 
 
 }
@@ -703,20 +440,11 @@ valor
 
 
 
-
-// =============================
-// CÁLCULO
-// =============================
-
-
-
 function valorConceito(nome){
 
 
 
     let conceito =
-
-
     dados.conceitos.find(
 
         c=>c.nome==nome
@@ -725,24 +453,17 @@ function valorConceito(nome){
 
 
 
-
-
     if(!conceito){
 
-
-        return 0;
-
+        return null;
 
     }
-
-
 
 
 
     return (
 
         conceito.minimo +
-
         conceito.maximo
 
     ) / 2;
@@ -758,14 +479,10 @@ function valorConceito(nome){
 
 
 
-
 function calcularMateria(materia){
 
 
-
-    let total = 0;
-
-
+    let notas=[];
 
 
 
@@ -773,12 +490,7 @@ function calcularMateria(materia){
     materia.trimestres.forEach(periodo=>{
 
 
-
-
-
         periodo.valores.forEach(valor=>{
-
-
 
 
 
@@ -786,16 +498,36 @@ function calcularMateria(materia){
 
 
 
-                total += numero(valor);
+                let n =
+                numero(valor);
+
+
+
+                if(n !== null){
+
+                    notas.push(n);
+
+                }
 
 
 
             }
+
+
             else{
 
 
 
-                total += valorConceito(valor);
+                let n =
+                valorConceito(valor);
+
+
+
+                if(n !== null){
+
+                    notas.push(n);
+
+                }
 
 
 
@@ -803,11 +535,7 @@ function calcularMateria(materia){
 
 
 
-
-
         });
-
-
 
 
 
@@ -817,21 +545,57 @@ function calcularMateria(materia){
 
 
 
+    if(notas.length===0){
+
+
+        return {
+
+
+            texto:
+            "Sem notas cadastradas",
+
+
+            classe:
+            "recuperacao"
+
+
+        };
+
+
+    }
+
+
+
+
+
+
+
+    let soma =
+    notas.reduce(
+
+        (a,b)=>a+b,
+
+        0
+
+    );
+
+
+
+    let media =
+    soma / notas.length;
+
+
 
 
     let falta =
-
-
-    dados.mediaNecessaria - total;
-
+    dados.mediaNecessaria - media;
 
 
 
 
 
 
-    if(falta <= 0){
-
+    if(media >= dados.mediaNecessaria){
 
 
         return {
@@ -839,16 +603,11 @@ function calcularMateria(materia){
 
             texto:
 
-            "Aprovado - "
+            "Aprovado - Média "
 
             +
 
-            total.toFixed(2)
-
-            +
-
-            " pontos",
-
+            media.toFixed(2),
 
 
 
@@ -869,19 +628,16 @@ function calcularMateria(materia){
 
 
 
-
     return {
-
 
 
         texto:
 
-
-        "Total "
+        "Média "
 
         +
 
-        total.toFixed(2)
+        media.toFixed(2)
 
         +
 
@@ -890,7 +646,6 @@ function calcularMateria(materia){
         +
 
         falta.toFixed(2),
-
 
 
 
@@ -906,55 +661,29 @@ function calcularMateria(materia){
 
 }
 
-
-
-
-
-
-
-
-
-// =============================
-// RENDERIZAÇÃO DAS MATÉRIAS
-// =============================
-
-
-
 function renderizarMaterias(){
 
 
-
-    listaMaterias.innerHTML = "";
-
-
+    listaMaterias.innerHTML="";
 
 
 
     dados.materias.forEach(
+
     (materia,index)=>{
 
 
-
-
-
-        let html = "";
-
-
+        let html="";
 
 
 
         materia.trimestres.forEach(
+
         (periodo,i)=>{
 
 
 
-
-
-
-            let campo = "";
-
-
-
+            let campo="";
 
 
 
@@ -963,19 +692,14 @@ function renderizarMaterias(){
 
 
 
-
-
                 campo = `
 
 
                 <input
 
-
                 type="number"
 
-
                 placeholder="Nota"
-
 
                 value="${periodo.valores[0] || ""}"
 
@@ -994,22 +718,23 @@ function renderizarMaterias(){
                 )"
 
 
+
                 >
+
 
 
                 `;
 
 
 
-
             }
+
+
             else{
 
 
 
-
-
-                campo = `
+                campo=`
 
 
                 <select
@@ -1033,11 +758,12 @@ function renderizarMaterias(){
 
 
 
-                <option>
+                <option value="">
 
                 Escolha
 
                 </option>
+
 
 
 
@@ -1047,13 +773,16 @@ function renderizarMaterias(){
                 dados.conceitos.map(c=>`
 
 
+
                 <option
 
                 ${periodo.valores[0]==c.nome?"selected":""}
 
                 >
 
+
                 ${c.nome}
+
 
                 </option>
 
@@ -1061,17 +790,15 @@ function renderizarMaterias(){
 
                 `).join("")
 
-
                 }
+
 
 
 
                 </select>
 
 
-
                 `;
-
 
 
             }
@@ -1081,10 +808,7 @@ function renderizarMaterias(){
 
 
 
-
-
             html += `
-
 
 
             <div class="trimestre">
@@ -1116,7 +840,6 @@ function renderizarMaterias(){
 
 
 
-
         });
 
 
@@ -1126,10 +849,7 @@ function renderizarMaterias(){
 
 
         let resultado =
-
         calcularMateria(materia);
-
-
 
 
 
@@ -1158,14 +878,15 @@ function renderizarMaterias(){
 
 
 
+
         <div class="resultado ${resultado.classe}">
 
 
         ${resultado.texto}
 
 
-        </div>
 
+        </div>
 
 
 
@@ -1181,14 +902,13 @@ function renderizarMaterias(){
 
 
 
+
+
         </div>
 
 
 
         `;
-
-
-
 
 
 
@@ -1199,9 +919,12 @@ function renderizarMaterias(){
 
 }
 
-// =============================
-// TELA PRINCIPAL
-// =============================
+
+
+
+
+
+
 
 
 function renderizar(){
@@ -1209,31 +932,21 @@ function renderizar(){
 
 
     modoAvaliacao.value =
-
     dados.modo;
-
-
 
 
 
     document.getElementById(
         "tipoPeriodo"
     ).value =
-
     dados.periodo;
-
-
-
 
 
 
     document.getElementById(
         "mediaNecessaria"
     ).value =
-
     dados.mediaNecessaria;
-
-
 
 
 
@@ -1251,15 +964,11 @@ function renderizar(){
 
 
 
-
-
     renderizarConceitos();
 
 
 
-
     renderizarMaterias();
-
 
 
 
@@ -1282,7 +991,7 @@ function renderizar(){
 if(!dados.periodo){
 
 
-    dados.periodo = "trimestre";
+    dados.periodo="trimestre";
 
 
 }
@@ -1291,22 +1000,22 @@ if(!dados.periodo){
 
 
 
-
-
 dados.materias.forEach(materia=>{
 
 
+    if(
 
-    if(!materia.trimestres || materia.trimestres.length==0){
+        !materia.trimestres ||
 
+        materia.trimestres.length==0
+
+    ){
 
 
         criarPeriodos(materia);
 
 
-
     }
-
 
 
 });
@@ -1317,9 +1026,6 @@ dados.materias.forEach(materia=>{
 
 
 salvar();
-
-
-
 
 
 
