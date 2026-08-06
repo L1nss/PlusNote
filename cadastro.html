@@ -1,69 +1,92 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Criar Conta - PlusNote</title>
+    <title>Criar Conta - PlusNote</title>
 
-<link rel="stylesheet" href="login.css">
-
+    <link rel="stylesheet" href="login.css">
 </head>
+
 
 <body>
 
-<div class="login-container">
-
-   <div class="logo-container">
-    <img src="Gemini_Generated_Image_tuohfltuohfltuoh.png" class="logo-site" alt="Logo PlusNote">
-</div>
-
-    <h1>PlusNote</h1>
-
-    <p>Criar nova conta</p>
+    <div class="login-container">
 
 
-    <input 
-    type="text"
-    id="nome"
-    placeholder="Nome">
+        <div class="logo-container">
+            <img 
+                src="Gemini_Generated_Image_tuohfltuohfltuoh.png" 
+                class="logo-site" 
+                alt="Logo PlusNote">
+        </div>
 
 
-    <input 
-    type="email"
-    id="email"
-    placeholder="Email">
+        <h1>PlusNote</h1>
+
+        <p>Criar nova conta</p>
 
 
-    <input 
-    type="password"
-    id="senha"
-    placeholder="Senha">
+
+        <form onsubmit="criarConta(event)">
 
 
-    <button onclick="criarConta()">
-        Criar conta
-    </button>
+            <input 
+                type="text"
+                id="nome"
+                name="nome"
+                placeholder="Nome"
+                required>
 
 
-  
+
+            <input 
+                type="email"
+                id="email"
+                name="email"
+                placeholder="Email"
+                required>
 
 
-    <div class="cadastro">
 
-        Já possui conta?
+            <input 
+                type="password"
+                id="senha"
+                name="senha"
+                placeholder="Senha"
+                required>
 
-        <a href="login.html">
-            Entrar
-        </a>
+
+
+            <button type="submit">
+                Criar conta
+            </button>
+
+
+        </form>
+
+
+
+
+        <div class="cadastro">
+
+            Já possui conta?
+
+            <a href="login.html">
+                Entrar
+            </a>
+
+        </div>
+
 
     </div>
 
-
-</div>
 
 
 <script src="cadastro.js"></script>
 
 </body>
+
 </html>
