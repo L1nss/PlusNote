@@ -4,7 +4,6 @@
 <head>
 
 <meta charset="UTF-8">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Login - PlusNote</title>
@@ -17,125 +16,49 @@
 <body>
 
 
-<button id="themeToggle" class="theme-button">
-🌙
-</button>
-
-
-<script src="theme.js"></script>
-<script src="login.js"></script>
-
-
-
 <div class="login-container">
 
 
-<div class="logo">
-+
-</div>
+    <h1>
+        PlusNote
+    </h1>
 
 
-<h1>
-PlusNote
-</h1>
-
-
-<p>
-Entre para continuar controlando suas notas
-</p>
+    <p>
+        Entre para acessar suas notas
+    </p>
 
 
 
-
-<form id="loginForm">
-
-
-
-<div class="input-group">
-
-<label>
-Email
-</label>
-
-
-<input 
-type="email"
-id="email"
-placeholder="Digite seu email"
-required>
-
-
-</div>
+    <input
+    type="text"
+    id="usuario"
+    placeholder="Usuário"
+    >
 
 
 
-
-
-<div class="input-group">
-
-<label>
-Senha
-</label>
-
-
-<input 
-type="password"
-id="senha"
-placeholder="Digite sua senha"
-required>
-
-
-</div>
+    <input
+    type="password"
+    id="senha"
+    placeholder="Senha"
+    >
 
 
 
+    <button onclick="entrar()">
 
+        Entrar
 
-<button type="submit">
-
-Entrar
-
-</button>
-
-
-
-
-</form>
-
-
-
-
-<a href="#">
-Esqueceu sua senha?
-</a>
-
-
-
-
-
-<div class="cadastro">
-
-Ainda não possui conta?
-
-<a href="#">
-Criar conta
-</a>
-
-
-</div>
+    </button>
 
 
 
 </div>
 
 
-
-
-
-<script src="theme.js"></script>
 
 <script src="login.js"></script>
-
 
 
 </body>
