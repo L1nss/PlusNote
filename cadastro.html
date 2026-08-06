@@ -1,12 +1,18 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PlusNote - Criar Conta</title>
-    <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Criar Conta - PlusNote</title>
+
+<link rel="stylesheet" href="login.css">
+
 </head>
+
 <body>
+
+<div class="login-container">
 
     <div class="logo">
         +
@@ -16,31 +22,50 @@
 
     <p>Criar nova conta</p>
 
-    <input
-        type="text"
-        id="nome"
-        placeholder="Nome">
 
-    <input
-        type="email"
-        id="email"
-        placeholder="Email">
+    <input 
+    type="text"
+    id="nome"
+    placeholder="Nome">
 
-    <input
-        type="password"
-        id="senha"
-        placeholder="Senha">
+
+    <input 
+    type="email"
+    id="email"
+    placeholder="Email">
+
+
+    <input 
+    type="password"
+    id="senha"
+    placeholder="Senha">
+
 
     <button onclick="criarConta()">
         Criar conta
     </button>
 
+
+    <button class="google">
+        🌐 Continuar com Google
+    </button>
+
+
     <div class="cadastro">
+
         Já possui conta?
-        <a href="login.html">Entrar</a>
+
+        <a href="login.html">
+            Entrar
+        </a>
+
     </div>
 
-    <script src="script.js"></script>
+
+</div>
+
+
+<script src="cadastro.js"></script>
 
 </body>
 </html>
