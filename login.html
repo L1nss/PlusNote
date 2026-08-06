@@ -1,37 +1,51 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - PlusNote</title>
+
     <link rel="stylesheet" href="login.css">
 </head>
-
 <body>
 
     <div class="login-container">
 
-      <img src="Gemini_Generated_Image_tuohfltuohfltuoh.png" alt="Logo PlusNote" class="logo-site">
+        <!-- Cabeçalho Roxo -->
+        <div class="login-header"></div>
 
+        <!-- Logo -->
+        <img
+            src="Gemini_Generated_Image_tuohfltuohfltuoh.png"
+            alt="Logo PlusNote"
+            class="logo-site">
+
+        <!-- Título -->
         <h1>PlusNote</h1>
 
+        <!-- Subtítulo -->
         <p>Entre para acessar suas notas</p>
 
+        <!-- Campo Email -->
         <input
             type="email"
             id="email"
-            placeholder="Email">
+            placeholder="Email"
+            required>
 
+        <!-- Campo Senha -->
         <input
             type="password"
             id="senha"
-            placeholder="Senha">
+            placeholder="Senha"
+            required>
 
+        <!-- Botão -->
         <button onclick="entrar()">
             Entrar
         </button>
 
+        <!-- Link Cadastro -->
         <div class="cadastro">
             Não possui conta?
             <a href="cadastro.html">
@@ -44,5 +58,4 @@
     <script src="login.js"></script>
 
 </body>
-
 </html>
