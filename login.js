@@ -1,50 +1,77 @@
 function entrar(){
 
-    const usuario =
-    document.getElementById("usuario").value.trim();
+
+const email =
+document.getElementById("email").value.trim();
 
 
-    const senha =
-    document.getElementById("senha").value.trim();
-
-
-
-    if(usuario === "" || senha === ""){
-
-        alert("Preencha usuário e senha");
-
-        return;
-
-    }
+const senha =
+document.getElementById("senha").value.trim();
 
 
 
-    // Cria a sessão para liberar o index.html
-
-    localStorage.setItem(
-        "usuarioLogado",
-        "true"
-    );
+const usuarioSalvo =
+localStorage.getItem("usuario");
 
 
 
-    window.location.href = "index.html";
+if(!usuarioSalvo){
+
+alert("Nenhuma conta cadastrada");
+
+return;
 
 }
 
 
 
-// Permite entrar pressionando ENTER
+const usuario =
+JSON.parse(usuarioSalvo);
+
+
+
+if(
+email === usuario.email &&
+senha === usuario.senha
+){
+
+
+localStorage.setItem(
+"usuarioLogado",
+"true"
+);
+
+
+
+window.location.href="index.html";
+
+
+}
+
+else{
+
+
+alert("Email ou senha incorretos");
+
+
+}
+
+
+}
+
+
 
 document.addEventListener(
 "keydown",
 
 function(event){
 
-    if(event.key === "Enter"){
 
-        entrar();
+if(event.key==="Enter"){
 
-    }
+entrar();
+
+}
+
 
 });
