@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#2C423F">
+  <title>PlusNote — suas notas, organizadas</title>
+  <link rel="icon" href="logo.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="supabase.js"></script>
+  <script>
+    (async () => {
+      const { data } = await window.plusnoteSupabase.auth.getSession();
+      if (!data.session) window.location.replace("login.html");
+    })();
+  </script>
+</head>
+<body>
+  <header class="app-header">
+    <div class="header-inner">
+      <a class="brand" href="index.html" aria-label="PlusNote início">
+        <img src="logo.svg" alt="PlusNote" class="brand-mark">
+        <span>
+          <strong>PlusNote</strong>
+          <small>Controle acadêmico</small>
+        </span>
+      </a>
+
+      <div class="header-actions">
+        <span id="usuarioNome" class="user-badge">Carregando…</span>
+        <button id="themeToggle" class="icon-button" type="button" aria-label="Alternar tema">☾</button>
+        <button class="button button-ghost" type="button" onclick="sair()">Sair</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero-card">
+      <div>
+        <span class="eyebrow">PAINEL ACADÊMICO</span>
+        <h1>Suas notas em um só lugar.</h1>
+        <p>Organize matérias, períodos e conceitos sem perder o controle da sua pontuação.</p>
+      </div>
+      <div class="hero-total">
+        <span>Matérias</span>
+        <strong id="totalMaterias">0</strong>
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="section-heading">
+        <div>
+          <span class="section-kicker">CONFIGURAÇÃO</span>
+          <h2>Como você é avaliado?</h2>
+        </div>
+      </div>
+
+      <div class="form-grid">
+        <div class="field">
+          <label for="modoAvaliacao">Sistema de avaliação</label>
+          <select id="modoAvaliacao" onchange="alterarModo()">
+            <option value="nota">Notas</option>
+            <option value="conceito">Conceitos</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="tipoPeriodo">Período letivo</label>
+          <select id="tipoPeriodo" onchange="alterarPeriodo()">
+            <option value="trimestre">Trimestre</option>
+            <option value="bimestre">Bimestre</option>
+            <option value="semestre">Semestre</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="mediaNecessaria">Pontos anuais necessários</label>
+          <input type="number" id="mediaNecessaria" value="60" min="0" step="0.01">
+        </div>
+      </div>
+
+      <button class="button" type="button" onclick="salvarConfiguracao()">Salvar configuração</button>
+      <span id="statusConfig" class="save-status" aria-live="polite"></span>
+    </section>
+
+    <section id="areaConceitos" class="card oculto">
+      <div class="section-heading">
+        <div>
+          <span class="section-kicker">CONCEITOS</span>
+          <h2>Cadastro de conceitos</h2>
+        </div>
+        <span class="count-badge">Máx. 6</span>
+      </div>
+
+      <div class="form-grid concept-form">
+        <div class="field">
+          <label for="nomeConceito">Nome</label>
+          <input type="text" id="nomeConceito" placeholder="Ex.: CSA" maxlength="20">
+        </div>
+        <div class="field">
+          <label for="minimoConceito">Valor mínimo</label>
+          <input type="number" id="minimoConceito" placeholder="0" step="0.01">
+        </div>
+        <div class="field">
+          <label for="maximoConceito">Valor máximo</label>
+          <input type="number" id="maximoConceito" placeholder="10" step="0.01">
+        </div>
+      </div>
+      <button class="button" type="button" onclick="adicionarConceito()">Adicionar conceito</button>
+      <div id="listaConceitos" class="stack-list"></div>
+    </section>
+
+    <section class="card">
+      <div class="section-heading">
+        <div>
+          <span class="section-kicker">MATÉRIAS</span>
+          <h2>Adicionar matéria</h2>
+        </div>
+      </div>
+      <div class="inline-form">
+        <input type="text" id="materia" placeholder="Digite o nome da matéria" maxlength="80">
+        <button class="button" type="button" onclick="adicionarMateria()">Adicionar</button>
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="section-heading">
+        <div>
+          <span class="section-kicker">ACOMPANHAMENTO</span>
+          <h2>Minhas matérias</h2>
+        </div>
+        <span id="totalPontosGeral" class="summary-badge">0 pontos</span>
+      </div>
+      <div id="listaMaterias" class="subjects-list"></div>
+    </section>
+  </main>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <script src="theme.js"></script>
+  <script src="script.js"></script>
+  <script>
+    async function sair() {
+      await window.plusnoteSupabase.auth.signOut();
+      window.location.replace("login.html");
+    }
+  </script>
+</body>
+</html>

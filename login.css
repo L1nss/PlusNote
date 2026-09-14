@@ -1,0 +1,25 @@
+:root { --silver:#C5C5C5; --iron:#4C5B61; --olive:#829191; --sage:#949B96; --slate:#2C423F; --bg:#eef0ef; --surface:#fff; --text:#20302e; --muted:#6b7775; --border:#d6dcda; }
+* { box-sizing:border-box; }
+body { margin:0; min-height:100vh; font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif; color:var(--text); background:radial-gradient(circle at top left,#fff 0,#eef0ef 45%,#dde2e0 100%); }
+.auth-page { width:min(100% - 32px, 440px); min-height:100vh; margin:auto; display:flex; flex-direction:column; justify-content:center; padding:42px 0; }
+.auth-brand { display:flex; align-items:center; justify-content:center; gap:12px; margin-bottom:22px; }
+.auth-logo { width:48px; height:48px; }
+.auth-brand strong { display:block; font-size:19px; }
+.auth-brand small { display:block; color:var(--muted); font-size:11px; margin-top:2px; }
+.auth-card { background:var(--surface); border:1px solid var(--border); border-radius:22px; padding:30px; box-shadow:0 25px 65px rgba(44,66,63,.13); }
+.eyebrow { display:block; color:var(--iron); font-size:10px; font-weight:900; letter-spacing:.14em; }
+h1 { margin:8px 0 7px; font-size:28px; letter-spacing:-.035em; }
+.auth-card > p { margin:0 0 24px; color:var(--muted); line-height:1.5; font-size:14px; }
+.field { margin-bottom:15px; }
+label { display:block; margin-bottom:7px; color:var(--iron); font-size:12px; font-weight:800; }
+input { width:100%; min-height:48px; padding:12px 14px; border:1px solid var(--border); border-radius:12px; background:#f5f6f5; color:var(--text); outline:none; }
+input:focus { border-color:var(--olive); box-shadow:0 0 0 4px rgba(130,145,145,.18); background:#fff; }
+.button { width:100%; min-height:48px; margin-top:3px; border:0; border-radius:12px; background:var(--slate); color:#fff; font-weight:800; cursor:pointer; transition:transform .18s,background .18s,opacity .18s; }
+.button:hover { transform:translateY(-1px); background:#233733; }
+.button:disabled { opacity:.6; cursor:not-allowed; transform:none; }
+.auth-status { min-height:19px; margin:12px 0 0 !important; font-size:12px !important; }
+.auth-status.error { color:#704946; }
+.auth-status.warning { color:#625a3d; }
+.auth-footer { margin-top:22px; padding-top:18px; border-top:1px solid var(--border); color:var(--muted); text-align:center; font-size:13px; }
+a { color:var(--iron); font-weight:800; }
+@media(max-width:480px){ .auth-card{padding:23px;} h1{font-size:25px;} }
