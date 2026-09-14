@@ -6,7 +6,7 @@
  *
  * A chave anon/publishable pode ficar no frontend. NUNCA coloque a service_role aqui.
  */
-const SUPABASE_URL = "https://ewfstkxevtcnoyszygvm.supabase.co/rest/v1/";
+const SUPABASE_URL = "https://ewfstkxevtcnoyszygvm.supabase.co";
 const SUPABASE_ANON_KEY = "sb_publishable_isAUrfZYOq6pjtOXvWJdmw_eWU8bsS1";
 
 if (!window.supabase) {
