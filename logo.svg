@@ -1,8 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
-  <title id="title">PlusNote</title>
-  <desc id="desc">Símbolo minimalista formado pelas letras P e N em uma folha.</desc>
-  <rect width="128" height="128" rx="30" fill="#2C423F"/>
-  <path d="M36 89V39h21c12 0 19 6 19 16s-7 16-19 16H47" fill="none" stroke="#C5C5C5" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
-  <path d="M69 72l10 17V52l13 19V89" fill="none" stroke="#949B96" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
-  <circle cx="89" cy="37" r="6" fill="#829191"/>
-</svg>
